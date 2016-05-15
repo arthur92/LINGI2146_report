@@ -59,8 +59,6 @@ if(malicious){
 
 \subsection*{Consequences on the network}
 All the down neighbors of the malicious node chose it as their parent since they think it's the root of the graph. A lot of the traffic will therefore pass by the malicious node. This attack is powerful when coupled with other attacks. Indeed, since an important part of the traffic will pass by the malicious node, it has the opportunity to corrupt, drop or do any other malicious action on the packets.
-\subsection*{Countermeasure}
-
 \subsection*{Measurement}
 \begin{table}[h!]
 	\centering
@@ -76,6 +74,7 @@ All the down neighbors of the malicious node chose it as their parent since they
 		\bottomrule
 	\end{tabular}
 \end{table}
+We can see that when the node advertises its fake rank, the number of DAO messages it receives is significantly bigger. It receives 25 times more packet in less than three minutes. We put different printf every time the node receives a message and when the node chooses its parent. We can see than once the attack is launched all the neighbors choose the malicious node as parent. 
 
 \section{Select-Forwarding Attack}
 A select forwarding attack is an attack where a malicious node decides arbitrarily which packet it will forward and which packet it will drop. This kind of attack is really hard to detect for a protocol such as RPL since the RPL packets are still distributed in the network, but all the IPV6 packet for example, are dropped. The node that doesn't receive the packet can not notice there is a bad behavior and the nodes that sent it can think the packets were lost. 
@@ -94,7 +93,8 @@ When the malicious node is activated, all the ping packets that have to reach a 
 It is difficult for a network to notify that some packet are lost, especially with a protocol such as RPL where the lost of packet happens really often. We let our little network running for several minute to let RPL the time to spot the error, but no changes happened.
 
 \subsection*{Measurement }
-When the malicious behavior is not activated, every mote on the network can be pinged from the outside thanks to the \textit{ping6} command. However, when the mote becomes malicious, all the mote to which the path pass by the malicious node are not pingable anymore. We put a printf in the code to show when the malicious node drops the packets. 
+When the malicious behavior is not activated, every mote on the network can be pinged from the outside thanks to the \textit{ping6} command. However, when the mote becomes malicious, all the mote to which the path pass by the malicious node are not pingable anymore. We put a printf in the code to show when the malicious node drops the packets.\\ 
+Note that this attack only works when using an IPV6 border router.
 
 \section{Version Number Attack}
 In the RPL protocol, each DIO message has a version number that is incremented by the root each time a rebuilding of the DODAG is needed. If a node has a version number smaller than the one of the root, it means that the node has not migrated to the new DODAG and can therefore not be used as a parent. If a malicious node increases the version number of the DIO messages it sends, the other nodes will think that are not up to date and will rebuild the DODAG graph and will reset their timer.
