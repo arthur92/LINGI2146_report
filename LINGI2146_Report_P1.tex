@@ -14,7 +14,7 @@ We choose as our subject for this project the attacks against the RPL protocol. 
 \section{Sinkhole attack}
 A sinkhole attack is when a node announces an artificial beneficial routing path. The other nodes of the network will therefore chose the malicious node as their parent and most of the traffic will pass by the malicious node.
 \subsection*{Implementation}
-We choose to implement the sinkhole attack by making the malicious node announcing a rank higher that its real one. The malicious node will advertise the rank 256 which the rank of the root. This is done in the [FILE.c] in the method [method].
+We choose to implement the sinkhole attack by making the malicious node announcing a rank higher that its real one. The malicious node will advertise the rank 256 which the rank of the root. This is done in the rpl-icmp6 in the method \verb#dio_input#.
 \subsection*{Consequences on the network}
 All the neighbor of the malicious node will chose it as their parent since they think it's the root of the graph. A lot of the traffic will therefore pass by the malicious node. This attack is powerful when coupled with other attacks. Indeed, since an important part of the traffic will pass by the malicious node, it has the opportunity to corrupt, drop or do anything other malicious action on the packets.
 \subsection*{Countermeasure}
