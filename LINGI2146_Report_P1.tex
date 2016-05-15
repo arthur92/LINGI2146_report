@@ -208,7 +208,7 @@ One of the immediate outcome of the attack is to reset the timer of the node tha
 One solution could be to limit the number of time a node can reset its timer during a lapse of time. 
 \subsection*{Measurement}
 The DAG inconsistency results in the lost of packets and the reset of the timers. The traffic is therefore increased. The printf in the code shows when the loop or the inconsistency is discovered by a node, resetting its timer and dropping the packet. 
-
+When trying to ping a node with the malicious node on the path, the packet will be discarded and the ping will not work. 
 
 \section{Other implementation}
 In \textit{rpl.c}, when the button is pressed the method is called to change the value of \textit{malicious} which represent the number of the attack.
