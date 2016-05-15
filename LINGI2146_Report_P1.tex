@@ -181,6 +181,35 @@ We also analyzed the evolution of the traffic and the consumption of resources b
 \end{figure}
 
 
+We used a built-in apps in contiki called \textbf{Powertrace} and \textbf{Energest} to measure the cpu 
+consumption. This apps only provided an estimation but we can see that it is coherent with the
+consequence we describded earlier. Each server mote print out the resource it currently used 
+every 5 seconds. We run the simulation for 5 minutes. We launched the attack at 3 minutes.
+Therefore we have 65 values for each server mote. To use Powertrace, we needed to remove
+some code because the program was too big for the Z1 motes. We were only able to run it
+on the normal mote, not the root one and the malicious one. 
+
+As we can see on the figure below, the mote 7 is in the range of the malicious node and the mote
+6 is not. We can see the attack as an impact on the two nodes but, the impact is less important
+on the mote 6.
+
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[scale=0.55]{img/simulation_measurement}
+\caption{Topology:Mote 1 is the root and the malicious mote is the 8}
+\end{figure}
+
+
+%TODO Améliorer le graphe avec les .txt
+\begin{figure}[ht!]
+\centering
+\includegraphics[scale=0.35]{img/mote6}
+\includegraphics[scale=0.35]{img/mote7}
+\caption{left: mote6, right:mote7}
+\end{figure}
+
+
 
 %http://www.chartgo.com/get.do?id=671333ad2b#.VziH_ddvfE8
 
