@@ -257,10 +257,12 @@ traffic of messages between the different nodes.
     \subfigure[Subfigure 1 caption]{
         \includegraphics[scale=0.4]{img/mali_sta5}
     }
-    \caption{Stack of a non-malicious with malicious node in the network}
+    \caption{Stack of a non-malicious with malicious node that perform
+    a version number attack in the network}
 \label{fig:vna2}
 \end{figure}
 
+\paragraph{MP stack watcher}
 Fig~\ref{fig:vna1} and fig~\ref{fig:vna2} show
 three different period of a non-malicious node
 where the activity is significant respectively when there is no
@@ -276,6 +278,7 @@ found, this leads to the reset of the timer, responsible of the increase
 of teh traffic. The root also receives an DAG message with an
 inconsistent version and it reset its timer too, to rebuild the \textsc{DODAG}.\\
 
+\paragraph{Power tracker analysis}
 We also analyzed the evolution of the traffic and the consumption of
 resources by using the power tracker tool provided by Cooja. We first
 let the network without malicious node in order to reach a stable state,
@@ -283,8 +286,9 @@ then after 4 minutes, we launched the attack. Immediately after the
 attack is performed, the neighboring node chose the malicious one as
 their parent and the power tracker show an increase of all the traffic
 in the network. Indeed, the average of radio transmission and the node
-with the highest rate increase over the time. The different results are
-presented in the table below : in red, the traffic of the most used node
+with the highest rate increase over the time. 
+
+Fig~\ref{fig:vna3} show our result: in red, the traffic of the most used node
 with a malicious node in the network, in green the average traffic with
 a malicious node in the network and finally in blue, the average traffic
 with no malicious node in the network. We can also see the evolution of
@@ -294,70 +298,50 @@ malicious node becomes the most used node and is responsible of most of
 the traffic since the other node chose it as parent. 
 
 
-% Simu avec les 14 noeuds : Apres 2min30, l'average est a 1,5 et le most used est à 2%, apres 3 min on est a 1,3 (average) et 1,7 (most used), après 4 min on est a 1,2 et 1,5. Apres 4 min le premier paquet corrupted est dans le réseau, 4min20
-% A packet with the modified version is sent every 7 seconds approximatively 
-%\begin{table}[h!]
-%	\centering
-%	\caption{Impact of  version number attack with Power tracker}
-%	\begin{tabular}{ccccc}
-%		\toprule"
-%		Network attacked&Average traffic & Most used node&Ratio &time\\
-%		\midrule
-%		No & 1.50 \% &2.00 \%&1.33&2:30\\
-%		No & 1.30 \% & 1.70 \% & 1.30& 3:00\\ 
-%		No & 1.20 \% & 1.50 \% & 1.25&4:00\\
-%		Yes & 1.50 \% & 2.20 \% & 1.46 & 4:20\\
-%		Yes & 1.70 \% & 2.45 \% & 1.44 &4:30 \\
-%		Yes & 1.88 \% & 2.60 \% & 1.38 & 4:40\\
-%		Yes & 2.05 \% & 2.80 \% & 1.36 &4:50\\
-%		Yes & 2.18 \% & 3.00 \% & 1.37& 5:00 \\
-%		Yes & 2.30 \%& 3.37 \% & 1.46 & 5:10\\
-%		Yes & 2.45 \% & 3.42 \% & 1.40 & 5:20 \\
-%		Yes & 2.53 \% & 3.60 \% &1.42 &5:30\\
-%		Yes & 2.80 \% & 3.98 \% & 1.42 &6:00\\
-%		Yes & 2.88 \% & 4.19 \% & 1.45 & 6:10 \\
-%		Yes & 3:08 \% & 4.65 \% & 1.51 & 6:40\\
-%		Yes & 3.18 \%& 4.84 \%& 1.52 & 7:00\\	
-%		Yes & 3.40 \% & 5.45 \% & 1.6 & 7:40 \\
-%		Yes & 3.46 \% & 5.55 \% &  1.6 & 8:00 \\
-%		\bottomrule
-%	\end{tabular}
-%\end{table}
-
 \begin{figure}
-\includegraphics[scale=0.4]{img/versionStat2}
-\includegraphics[scale=0.4]{img/versionStat}
-\caption{Topology used : the malicious node is the mote 2 and the evolution of the radio traffic during a version number attack}
-%\caption{}
+    \subfigure[Topology used : the malicious node is the mote 2 and the evolution of the radio traffic during a version number attack]{
+        \includegraphics[scale=0.37]{img/versionStat2}
+    }
+    \includegraphics[scale=0.4]{img/versionStat}
+    \caption{Traffic and consumption of resources used when a version
+    number attack is perform}
+    \label{fig:vna3}
 \end{figure}
 
+\paragraph{Powertrace}
 
-We used a built-in apps in contiki called \textbf{Powertrace} and \textbf{Energest} to measure the cpu 
-consumption. This apps only provided an estimation but we can see that it is coherent with the
-consequence we describded earlier. Each server mote print out the resource it currently used 
-every 5 seconds. We run the simulation for 5 minutes. We launched the attack at 3 minutes.
-Therefore we have 65 values for each server mote. To use Powertrace, we needed to remove
-some code because the program was too big for the Z1 motes. We were only able to run it
-on the normal mote, not the root one and the malicious one. 
+We used a built-in apps in contiki called \textbf{Powertrace} and
+\textbf{Energest} to measure the cpu consumption. This apps only
+provided an estimation but we can see that it is coherent with the
+consequence we describded earlier. Each server mote print out the
+resource it currently used every 5 seconds. We run the simulation for 5
+minutes. We launched the attack at 3 minutes. Therefore we have 65
+values for each server mote. To use Powertrace, we needed to remove some
+code because the program was too big for the Z1 motes. We were only able
+to run it on the normal mote, not the root one and the malicious one. 
 
-As we can see on the figure below, the mote 7 is in the range of the malicious node and the mote
-6 is not. We can see the attack as an impact on the two nodes but, the impact is less important
+As we can see on our topology show at fig~\ref{fig:topo}, the mote 7 is
+in the range of the malicious node and the mote
+6 is not. As show at fig~\ref{fig:power}, the attack as an impact on the two nodes but, the impact is less important
 on the mote 6.
 
 
 \begin{figure}[ht!]
-\centering
-\includegraphics[scale=0.55]{img/simulation_measurement}
-\caption{Topology:Mote 1 is the root and the malicious mote is the 8}
+    \centering
+    \includegraphics[scale=0.55]{img/simulation_measurement}
+    \caption{Topology:Mote 1 is the root and the malicious mote is the 8}
 \end{figure}
 
 
-%TODO Améliorer le graphe avec les .txt
 \begin{figure}[ht!]
-\centering
-\includegraphics[scale=0.35]{img/mote6}
-\includegraphics[scale=0.35]{img/mote7}
-\caption{left: mote6, right:mote7}
+    \centering
+    \subfigure[Mote 6]{
+        \includegraphics[scale=0.35]{img/mote6}
+    }
+    \subfigure[Mote 7]{
+        \includegraphics[scale=0.35]{img/mote7}
+    }
+    \caption{Powertrace on a version number attack}
 \end{figure}
 
 
@@ -366,6 +350,7 @@ on the mote 6.
 
 
 \section{DAG Inconsistency Attack}
+
 A DAG inconsistency is when the packet doesn't follow the direction that
 matches the rank relationship. In that case, the node that notices the
 inconsistency, it uses the rank error bit flag to advertise that this
@@ -380,22 +365,22 @@ difficult to implement since we have to create loop in the network to
 verify if the attack works, we therefore chose to implement the first
 version.
 
-\subsection*{Implementation}
+\paragraph{Implementation}
 The \textsc{RPL} protocol implemented in Contiki doesn't drop the packet when
 the rank error bit is set. However, it could be some situations where we would
 prefer to drop a packet that is inconsistent, we therefore changed the behavior
 of the \textsc{RPL} protocol to make it drop a packet when the rank error bit
-is set. The malicious node set the flag for all the packet it receives. This is
-done in the \textit{ext-header.c} file in the method [NAME].
+is set. The malicious node set the flag for all the packet it receives.
 
-\begin{lstlisting}
+\begin{lstlisting}[caption={DAG inconsistency attack 
+done in the ext-header.c file }]
 if(malicious==4){
 	printf("Malicious node changes the flag of the packet \n");
 	UIP_EXT_HDR_OPT_RPL_BUF->flags |= RPL_HDR_OPT_RANK_ERR;
 }
-
 \end{lstlisting}
-\subsection*{Consequences on the network}
+
+\paragraph{Consequences on the network}
 One of the immediate outcome of the attack is to reset the timer of the
 node that receives the packet. The node will therefore send \textsc{DIO} message
 more frequently, leading to an unnecessary used of the links and the
@@ -403,12 +388,12 @@ battery. The different neighbor of the node are also victim of the
 attack since they have to process a useless traffic. Moreover, the node
 will drop the different packet it receives with the flag set.
 
-\subsection*{Countermeasures}
+\paragraph{Countermeasures}
 
 One solution could be to limit the number of time a node can reset its timer during a lapse of time. 
 
 
-\subsection*{Measurement}
+\paragraph{Measurement}
 The DAG inconsistency results in the lost of packets and the reset of
 the timers. The traffic is therefore increased. The printf in the code
 shows when the loop or the inconsistency is discovered by a node,
@@ -416,7 +401,7 @@ resetting its timer and dropping the packet. When trying to ping a node
 with the malicious node on the path, the packet will be discarded and
 the ping will not work. 
 
-\section{Other implementation}
+\subsection{Other implementation}
 In \textit{rpl.c}, when the button is pressed the method is called to
 change the value of \textit{malicious} which represent the number of the
 attack.
