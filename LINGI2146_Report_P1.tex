@@ -1,4 +1,4 @@
-\documentclass{report}
+\documentclass[11pt]{report}
 \usepackage[utf8]{inputenc}
 \usepackage{fullpage}
 \usepackage{graphicx}
@@ -144,7 +144,7 @@ To do so, when the node verifying the header, it will return a error
 value resulting to the packet drop.
 
 
-\begin{lstlisting}[caption={Selective-forwarding attack done in the
+\begin{lstlisting}[caption={SF attack done in the
 rpl-ext-header.c file in the method rpl\_verify\_header}]
 if(malicious==3){
 	printf("Malicious node drops the packet\n");
@@ -289,9 +289,10 @@ their parent and the power tracker show an increase of all the traffic
 in the network. Indeed, the average of radio transmission and the node
 with the highest rate increase over the time. 
 
-Fig~\ref{fig:vna3} show our result: in red, the traffic of the most used node
-with a malicious node in the network, in green the average traffic with
-a malicious node in the network and finally in blue, the average traffic
+Fig~\ref{fig:vna3} show our result: 
+\textcolor{red}{$\bullet$} the traffic of the most used node with a malicious noed,
+\textcolor{green}{$\bullet$}the average traffic with
+a malicious node in the network and \textcolor{blue}{$\bullet$} the average traffic
 with no malicious node in the network. We can also see the evolution of
 the ratio between the average traffic and the traffic of the most used
 node. One minute after the insertion of the first corrupted packet, the
@@ -300,11 +301,11 @@ the traffic since the other node chose it as parent.
 
 
 \begin{figure}
-    \subfigure[Topology used : the malicious node is the mote 2 and the evolution of the radio traffic during a version number attack]{
         \includegraphics[scale=0.37]{img/versionStat2}
-    }
     \includegraphics[scale=0.4]{img/versionStat}
-    \caption{Traffic and consumption of resources used when a version
+    \caption{We used a topology where the malicious node is the mote 2 and the
+        evolution of the radio traffic during a version number attack.
+        Traffic and consumption of resources used when a version
     number attack is perform}
     \label{fig:vna3}
 \end{figure}
@@ -331,6 +332,7 @@ on the mote 6.
     \centering
     \includegraphics[scale=0.55]{img/simulation_measurement}
     \caption{Topology:Mote 1 is the root and the malicious mote is the 8}
+    \label{fig:topo}
 \end{figure}
 
 
@@ -343,8 +345,8 @@ on the mote 6.
         \includegraphics[scale=0.30]{img/mote7}
     }
     \caption{Powertrace on a version number attack}
+    \label{fig:power}
 \end{figure}
-
 
 
 %http://www.chartgo.com/get.do?id=671333ad2b#.VziH_ddvfE8
@@ -409,10 +411,7 @@ attack.
 
 \begin{lstlisting}
 int malicious=0;
-void
-set_malicious(void){
-	malicious = (malicious+1)%5;
-}
+void set_malicious(void){ malicious = (malicious+1)%5; }
 \end{lstlisting}
 
 \end{document}
